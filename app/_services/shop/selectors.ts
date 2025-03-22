@@ -4,9 +4,9 @@ import { GetShopsResponse, GetShopDetailResponse, ShopType, DbShopType } from '.
 
 const convertDbShop = (shop: DbShopType): ShopType => {
   const lat_match = shop.Location.match(/POINT\((.* )/);
-  const long_match = shop.Location.match(/ (.* )/);
-  const lat = lat_match ? lat_match[0] : '';
-  const long = long_match ? long_match[0] : '';
+  const lng_match = shop.Location.match(/ (.*)\)/);
+  const lat = lat_match ? lat_match[1] : '';
+  const lng = lng_match ? lng_match[1] : '';
   return {
     id: shop.Id,
     user: shop.User,
@@ -21,8 +21,8 @@ const convertDbShop = (shop: DbShopType): ShopType => {
     time: shop.Time,
     payment: shop.Payment,
     feature: shop.Feature,
-    lat: lat,
-    long: long,
+    lat: Number(lat),
+    lng: Number(lng),
   };
 };
 

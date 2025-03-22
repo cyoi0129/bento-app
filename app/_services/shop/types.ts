@@ -14,8 +14,8 @@ export type ShopType = {
   time: string;
   payment: string[];
   feature: string[];
-  lat: string;
-  long: string;
+  lat: number;
+  lng: number;
 };
 
 export type DbShopType = {
@@ -47,4 +47,15 @@ export type GetShopDetailResponse = {
 
 export type ShopId = {
   id: string;
+};
+
+export type Location = {
+  lat: number;
+  lng: number;
+};
+
+export type LocationData = {
+  id: number;
+  label: string;
+  position: Location;
 };

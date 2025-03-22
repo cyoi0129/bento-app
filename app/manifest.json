@@ -1,0 +1,13 @@
+{
+    "name": "弁当検索",
+    "short_name": "弁当検索",
+    "description": "近くのオーガニック弁当検索",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#fff",
+    "icons": [
+      { "src": "/images/icon.png", "type": "image/png", "sizes": "192x192" },
+      { "src": "/images/icon.png", "type": "image/png", "sizes": "512x512" }
+    ]
+  }

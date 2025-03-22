@@ -1,35 +1,54 @@
 'use client';
 import { FC } from 'react';
 import { ShopType } from '../_services/shop/types';
+import { FaPhoneAlt, FaCalendar, FaMoneyCheckAlt } from 'react-icons/fa';
+import { FaLocationDot } from 'react-icons/fa6';
+import { MdRestaurantMenu } from 'react-icons/md';
 import Link from 'next/link';
+import styles from './shop_detail.module.scss';
 
 type ListShopItemProps = {
-  data: ShopType;
+  data: ShopType | undefined;
 };
 
 const ListShopItem: FC<ListShopItemProps> = (props) => {
   const { data } = props;
+  if (!data) return null;
   return (
-    <li>
-      <Link href={`/shop/${data.id}`}>
-        <h3>{data.name}</h3>
-        <p>{data.description}</p>
-        <div>
-          <dl>
-            <dt>Phone</dt>
-            <dd>{data.phone}</dd>
-            <dt>Address</dt>
-            <dd>{data.address}</dd>
-            <dt>Business Time</dt>
-            <dd>{`${data.day.join('|')} - ${data.time}`}</dd>
-            <dt>Payment</dt>
-            <dd>{data.payment.join('|')}</dd>
-            <dt>Feature</dt>
-            <dd>{data.feature.join('|')}</dd>
-          </dl>
+    <div className={styles.modal}>
+      <div className={styles.inner}>
+        <h3 className={styles.title}>{data.name}</h3>
+        <div className={styles.image}>
+          <img src={`/images${data.image}`} alt={data.name} />
         </div>
-      </Link>
-    </li>
+        <p className={styles.description}>{data.description}</p>
+        <dl className={styles.detail}>
+          <dt>
+            <FaPhoneAlt />
+          </dt>
+          <dd>{data.phone}</dd>
+          <dt>
+            <FaLocationDot />
+          </dt>
+          <dd>{data.address}</dd>
+          <dt>
+            <FaCalendar />
+          </dt>
+          <dd>{`${data.day.join(' | ')} - ${data.time}`}</dd>
+          <dt>
+            <FaMoneyCheckAlt />
+          </dt>
+          <dd>{data.payment.join(' | ')}</dd>
+          <dt>
+            <MdRestaurantMenu />
+          </dt>
+          <dd>{data.feature.join(' | ')}</dd>
+        </dl>
+        <p className={styles.link}>
+          <Link href={`/shop/${data.id}`}>詳細を見る</Link>
+        </p>
+      </div>
+    </div>
   );
 };
 

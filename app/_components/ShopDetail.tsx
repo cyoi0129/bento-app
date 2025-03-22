@@ -16,7 +16,7 @@ const ShopDetail: FC<ComponentProps> = (props) => {
   const shop = getShopDetailSelector(data);
   if (!shop) return null;
   return (
-    <>
+    <div>
       <h3>{shop.name}</h3>
       <p>{shop.description}</p>
       <div>
@@ -33,7 +33,7 @@ const ShopDetail: FC<ComponentProps> = (props) => {
           <dd>{shop.feature.join('|')}</dd>
         </dl>
       </div>
-    </>
+    </div>
   );
 };
 
