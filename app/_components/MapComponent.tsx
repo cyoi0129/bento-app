@@ -12,8 +12,8 @@ type MapComponentProps = {
 const MapComponent: FC<MapComponentProps> = (props) => {
   const { data, mapSelect } = props;
   const defaultPosition: Location = {
-    lat: 35.60757165862948,
-    lng: 139.7346055522518,
+    lat: 35.60748658427185,
+    lng: 139.73144707317593,
   };
   // const [currentPosition, setCurrentPosition] = useState<Location>(defaultPosition);
   const [shopList, setShopList] = useState<LocationData[]>(data);
@@ -29,7 +29,10 @@ const MapComponent: FC<MapComponentProps> = (props) => {
   const handleMarkerClick = (id: number | null) => {
     mapSelect(id);
   };
-
+  const OPTIONS = {
+    minZoom: 17,
+    maxZoom: 17,
+  };
   const { isLoaded, onLoad } = useMap({
     defaultPosition,
   });
@@ -46,7 +49,7 @@ const MapComponent: FC<MapComponentProps> = (props) => {
   return (
     <>
       {isLoaded ? (
-        <GoogleMapComponent mapContainerStyle={containerStyle} onLoad={onLoad} center={defaultPosition} onClick={() => handleMarkerClick(null)} zoom={17}>
+        <GoogleMapComponent options={OPTIONS} mapContainerStyle={containerStyle} onLoad={onLoad} center={defaultPosition} onClick={() => handleMarkerClick(null)} zoom={17}>
           {shopList.length > 0 ? shopList.map((shop) => <Marker onClick={() => handleMarkerClick(shop.id)} key={shop.id} position={shop.position} label={shop.label} />) : null}
         </GoogleMapComponent>
       ) : (
