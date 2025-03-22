@@ -8,7 +8,14 @@ import { type ShopType, type LocationData } from '../_services/shop/types';
 const ShopList: FC = () => {
   const [currentShop, setCurrentShop] = useState<number | null>(null);
   const { isPending, isError, data } = useGetShops();
-  if (isPending) return 'Loading';
+  if (isPending)
+    return (
+      <div className="overlay">
+        <div className="loading">
+          <span className="loader"></span>
+        </div>
+      </div>
+    );
   if (isError) return 'Error';
 
   const getCurrentShopData = (id: number): ShopType | undefined => {
@@ -29,7 +36,7 @@ const ShopList: FC = () => {
     return shops.map((shop) => converShopMapItem(shop));
   };
 
-  const selectShop = (id: number) => {
+  const selectShop = (id: number | null) => {
     setCurrentShop(id);
   };
 

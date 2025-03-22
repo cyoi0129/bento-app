@@ -1,7 +1,7 @@
 .modal {
   position: absolute;
   width: 320px;
-  height: 560px;
+  height: 600px;
   overflow-y: scroll;
   background-color: #fff;
   border-radius: 8px;
@@ -20,7 +20,7 @@
 .image {
   margin: 16px auto 0;
   width: 120px;
-  height: 80px;
+  aspect-ratio: 1.5;
   overflow: hidden;
   img {
     width: 100%;
@@ -49,25 +49,5 @@
   }
   dd {
     width: calc(100% - 40px);
-  }
-}
-.link {
-  margin: 16px auto 0;
-  width: 160px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  a {
-    width: 160px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #89c997;
-    border-radius: 4px;
-    font-weight: bold;
-    font-size: 16px;
-    color: #fff;
   }
 }

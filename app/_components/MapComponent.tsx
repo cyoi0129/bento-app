@@ -6,7 +6,7 @@ import { type Location, type LocationData } from '../_services/shop/types';
 
 type MapComponentProps = {
   data: LocationData[];
-  mapSelect: (id: number) => void;
+  mapSelect: (id: number | null) => void;
 };
 
 const MapComponent: FC<MapComponentProps> = (props) => {
@@ -26,11 +26,9 @@ const MapComponent: FC<MapComponentProps> = (props) => {
   // };
   // navigator.geolocation.getCurrentPosition(positionGetSuccessed, positionGetFailed);
 
-  const handleMarkerClick = (id: number) => {
+  const handleMarkerClick = (id: number | null) => {
     mapSelect(id);
   };
-
-  const [zoom, setZoom] = useState<number>(17);
 
   const { isLoaded, onLoad } = useMap({
     defaultPosition,
@@ -43,13 +41,12 @@ const MapComponent: FC<MapComponentProps> = (props) => {
 
   useEffect(() => {
     setShopList(data);
-    setZoom(17);
   }, [data]);
 
   return (
     <>
       {isLoaded ? (
-        <GoogleMapComponent zoom={zoom} mapContainerStyle={containerStyle} onLoad={onLoad} center={defaultPosition}>
+        <GoogleMapComponent mapContainerStyle={containerStyle} onLoad={onLoad} center={defaultPosition} onClick={() => handleMarkerClick(null)} zoom={17}>
           {shopList.length > 0 ? shopList.map((shop) => <Marker onClick={() => handleMarkerClick(shop.id)} key={shop.id} position={shop.position} label={shop.label} />) : null}
         </GoogleMapComponent>
       ) : (

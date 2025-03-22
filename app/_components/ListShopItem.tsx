@@ -5,7 +5,7 @@ import { FaPhoneAlt, FaCalendar, FaMoneyCheckAlt } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 import { MdRestaurantMenu } from 'react-icons/md';
 import Link from 'next/link';
-import styles from './shop_detail.module.scss';
+import styles from './modal.module.scss';
 
 type ListShopItemProps = {
   data: ShopType | undefined;
@@ -17,7 +17,7 @@ const ListShopItem: FC<ListShopItemProps> = (props) => {
   return (
     <div className={styles.modal}>
       <div className={styles.inner}>
-        <h3 className={styles.title}>{data.name}</h3>
+        <h2 className={styles.title}>{data.name}</h2>
         <div className={styles.image}>
           <img src={`/images${data.image}`} alt={data.name} />
         </div>
@@ -44,7 +44,7 @@ const ListShopItem: FC<ListShopItemProps> = (props) => {
           </dt>
           <dd>{data.feature.join(' | ')}</dd>
         </dl>
-        <p className={styles.link}>
+        <p className="link">
           <Link href={`/shop/${data.id}`}>詳細を見る</Link>
         </p>
       </div>

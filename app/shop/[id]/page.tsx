@@ -36,7 +36,9 @@ const ShopPage: FC<PageProps> = async ({ params }) => {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <ShopDetail id={shop} />
       <Items id={shop} />
-      <Link href="/">back2top</Link>
+      <p className="link">
+        <Link href="/">一覧に戻る</Link>
+      </p>
     </HydrationBoundary>
   );
 };
