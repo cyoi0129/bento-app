@@ -10,6 +10,10 @@ export const useGetShops = () => {
     queryKey: shopKeys.lists(),
     queryFn: getShops,
     select: getShopsSelector,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    staleTime: 1000 * 60 * 60 * 24,
   });
 
   return {

@@ -10,6 +10,10 @@ export const useGetItems = () => {
     queryKey: itemKeys.lists(),
     queryFn: getItems,
     select: getItemsSelector,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    staleTime: 1000 * 60 * 60 * 24,
   });
 
   return {
@@ -24,6 +28,8 @@ export const useGetShopItems = (shop: number) => {
     queryKey: itemKeys.detail(shop),
     queryFn: () => getShopItems(shop),
     select: getItemsSelector,
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 60 * 24,
   });
 
   return {
