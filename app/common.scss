@@ -75,6 +75,24 @@ body {
   }
 }
 
+.filter_btn {
+  position: fixed;
+  z-index: 2;
+  right: 16px;
+  top: 16px;
+  background-color: #89c997;
+  color: #fff;
+  font-size: 24px;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+}
+
 .overlay {
   z-index: 2;
   position: fixed;

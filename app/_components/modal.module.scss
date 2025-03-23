@@ -1,7 +1,7 @@
 .modal {
   position: absolute;
   width: 320px;
-  height: 600px;
+  height: 640px;
   overflow-y: scroll;
   background-color: #fff;
   border-radius: 8px;
@@ -12,6 +12,15 @@
 
 .inner {
   padding: 16px;
+}
+.close {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 32px;
+  svg {
+    cursor: pointer;
+  }
 }
 .title {
   text-align: center;

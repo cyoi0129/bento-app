@@ -1,0 +1,52 @@
+.hidden {
+  display: none;
+}
+.filter {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 200px;
+  background-color: #fff;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+  z-index: 1;
+  height: 100vh;
+  padding: 0 16px;
+}
+.current {
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  label {
+    cursor: pointer;
+  }
+}
+.title {
+  margin-top: 16px;
+}
+.list {
+  margin-top: 16px;
+  li {
+    line-height: 2em;
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    label {
+      cursor: pointer;
+    }
+  }
+}
+.action {
+  margin: 24px auto;
+  width: 160px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #89c997;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+}
