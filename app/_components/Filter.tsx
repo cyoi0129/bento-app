@@ -36,7 +36,7 @@ const Filter: FC<FilterProps> = (props) => {
     }
   };
   const handleFeature = (target: string) => {
-    if (paymentFilter.includes(target)) {
+    if (featureFilter.includes(target)) {
       setFeatureFilter(featureFilter.filter((item) => item !== target));
     } else {
       setFeatureFilter([target, ...featureFilter]);

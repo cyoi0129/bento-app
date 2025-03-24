@@ -6,33 +6,27 @@ import { type Location, type LocationData } from '../_services/shop/types';
 
 type MapComponentProps = {
   data: LocationData[];
+  currentLocation: Location | null;
   mapSelect: (id: number | null) => void;
 };
 
 const MapComponent: FC<MapComponentProps> = (props) => {
-  const { data, mapSelect } = props;
   const defaultPosition: Location = {
     lat: 35.60748658427185,
     lng: 139.73144707317593,
   };
-  // const [currentPosition, setCurrentPosition] = useState<Location>(defaultPosition);
+  const { data, mapSelect, currentLocation } = props;
+  const [current, setCurrent] = useState<Location>(defaultPosition);
   const [shopList, setShopList] = useState<LocationData[]>(data);
-
-  // const positionGetSuccessed = (position: any) => {
-  //   setCurrentPosition({ lat: Number(position.coords.latitude), lng: Number(position.coords.longitude) });
-  // };
-  // const positionGetFailed = () => {
-  //   window.alert('位置情報の取得に失敗しました');
-  // };
-  // navigator.geolocation.getCurrentPosition(positionGetSuccessed, positionGetFailed);
-
   const handleMarkerClick = (id: number | null) => {
     mapSelect(id);
   };
+
   const OPTIONS = {
-    minZoom: 17,
+    minZoom: 15,
     maxZoom: 17,
   };
+
   const { isLoaded, onLoad } = useMap({
     defaultPosition,
   });
@@ -46,10 +40,14 @@ const MapComponent: FC<MapComponentProps> = (props) => {
     setShopList(data);
   }, [data]);
 
+  useEffect(() => {
+    if (currentLocation) setCurrent(currentLocation);
+  }, [currentLocation]);
+
   return (
     <>
       {isLoaded ? (
-        <GoogleMapComponent options={OPTIONS} mapContainerStyle={containerStyle} onLoad={onLoad} center={defaultPosition} onClick={() => handleMarkerClick(null)} zoom={17}>
+        <GoogleMapComponent options={OPTIONS} mapContainerStyle={containerStyle} onLoad={onLoad} center={current} onClick={() => handleMarkerClick(null)} zoom={17}>
           {shopList.length > 0 ? shopList.map((shop) => <Marker onClick={() => handleMarkerClick(shop.id)} key={shop.id} position={shop.position} label={shop.label} />) : null}
         </GoogleMapComponent>
       ) : (
