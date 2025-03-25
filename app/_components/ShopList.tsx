@@ -75,7 +75,6 @@ const ShopList: FC = () => {
   };
 
   const filterProcess = (filter: FilterData) => {
-    setShowFilter(false);
     let shops = data;
     if (filter.current !== '') {
       shops = shops?.filter((shop) => shop.day.includes(filter.current));
@@ -86,7 +85,12 @@ const ShopList: FC = () => {
     if (filter.feature.length > 0) {
       shops = shops?.filter((shop) => filter.feature.every((item) => shop.feature.includes(item)));
     }
-    if (shops) setShopList(shops);
+    if (shops && shops.length > 0) {
+      setShopList(shops);
+      setShowFilter(false);
+    } else {
+      alert('条件にマッチする店舗は存在しない');
+    }
   };
 
   return (
